@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : FruityBlue 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120307
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>eightnine - kais blog</title>
+<link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css" />
+<link href="/style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div id="wrapper">
+	<div id="wrapper2">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">eightnine</a></h1>
+				<p>kais blog</p>
+			</div>
+			<div id="menu">
+				<ul>
+					<li class="current_page_item"><a href="#">Homepage</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Photos</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- end #header -->
+		<div id="page">
+			<div id="content">
+      <%= yield %>
+				<div style="clear: both;">&nbsp;</div>
+			</div>
+			<!-- end #content -->
+			<div id="sidebar">
+				<ul>
+					<li>
+						<div id="search" >
+							<form method="get" action="#">
+								<div>
+									<input type="text" name="s" id="search-text" value="" />
+									<input type="submit" id="search-submit" value="GO" />
+								</div>
+							</form>
+						</div>
+						<div style="clear: both;">&nbsp;</div>
+					</li>
+					<li>
+						<h2>Aliquam tempus</h2>
+						<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
+					</li>
+					<li>
+            <h2>Tags</h2>
+            <ul>
+              <% blog.tags.each do |tag, articles| %>
+                <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</a></li>
+              <% end %>
+            </ul>
+					</li>
+					<li>
+            <h2>Recent Articles</h2>
+            <ul>
+              <% blog.articles[0...10].each do |article| %>
+                <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
+              <% end %>
+            </ul>
+					</li>
+					<li>
+						<h2>By Year</h2>
+            <ul>
+              <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
+                <li><%= link_to year, blog_year_path(year) %> (<%= articles.size %>)</a></li>
+              <% end %>
+            </ul>
+					</li>
+				</ul>
+			</div>
+			<!-- end #sidebar -->
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+		<!-- end #page -->
+	</div>
+</div>
+<div id="footer-content">
+	<div id="footer">
+		<p>Copyright (c) Kai Mysliwiec. All rights reserved. Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
+	</div>
+</div>
+<!-- end #footer -->
+</body>
+</html>

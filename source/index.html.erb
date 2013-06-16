@@ -1,0 +1,32 @@
+---
+pageable: true
+per_page: 10
+---
+
+        <% page_articles.each_with_index do |article, i| %>
+				<div class="post">
+          <h2 class="title"><%= link_to article.title, article %> <span></span></h2>
+					<p class="meta"><span class="date"><%= article.date.strftime('%b %e') %></span></p>
+					<div style="clear: both;">&nbsp;</div>
+          <!-- use article.summary(250) if you have Nokogiri available to show just
+              the first 250 characters -->
+					<div class="entry">
+            <%= article.summary %>
+						<p class="links"><a href="#" class="more">Read More</a><a href="#" title="b0x" class="comments">Comments</a></p>
+					</div>
+				</div>
+        <% end %>
+
+<% if paginate %>
+  <p>Page <%= page_number %> of <%= num_pages %></p>
+
+  <% if prev_page %>
+    <p><%= link_to 'Previous page', prev_page %></p>
+  <% end %>
+<% end %>
+
+<% if paginate %>
+  <% if next_page %>
+    <p><%= link_to 'Next page', next_page %></p>
+  <% end %>
+<% end %>
