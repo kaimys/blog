@@ -1,3 +1,5 @@
+require "rack/codehighlighter"
+
 ###
 # Blog settings
 ###
@@ -24,6 +26,15 @@ activate :blog do |blog|
   # blog.per_page = 10
   # blog.page_link = "page/:num"
 end
+
+activate :directory_indexes
+
+use Rack::Codehighlighter,
+  :pygments_api,
+#  :coderay,
+  :element => "pre>code",
+  :pattern => /\A:::([-_+\w]+)\s*\n/,
+  :markdown => true
 
 page "/feed.xml", :layout => false
 
@@ -76,9 +87,9 @@ page "/feed.xml", :layout => false
 #   end
 # end
 
-set :css_dir, 'stylesheets'
+set :css_dir, 'css'
 
-set :js_dir, 'javascripts'
+set :js_dir, 'js'
 
 set :images_dir, 'images'
 

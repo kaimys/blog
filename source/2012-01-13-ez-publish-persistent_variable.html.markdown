@@ -18,16 +18,22 @@ It is easy to acces it in pagelayout context then
     
 If you are writing an operator in PHP you can access and modify it in node context with:
 
-    $persistent_variable = array();
-    if($tpl->hasVariable('persistent_variable'))
-        $persistent_variable = $tpl->variable('persistent_variable');
-    $persistent_variable['key'] = 'value';
-    $tpl->setVariable('persistent_variable', $persistent_variable);
+    :::php
+    <?php
+        $persistent_variable = array();
+        if($tpl->hasVariable('persistent_variable'))
+            $persistent_variable = $tpl->variable('persistent_variable');
+        $persistent_variable['key'] = 'value';
+        $tpl->setVariable('persistent_variable', $persistent_variable);
+    ?>
     
 And in in pagelayout context with:
 
-    $module_result = $tpl->variable('module_result');
-    $persistent_variable = array();
-    if(isset($module_result['content_info']['persistent_variable']))
-        $persistent_variable = $module_result['content_info']['persistent_variable'];
-    
+    :::php
+    <?php
+        $module_result = $tpl->variable('module_result');
+        $persistent_variable = array();
+        if(isset($module_result['content_info']['persistent_variable']))
+            $persistent_variable = 
+                $module_result['content_info']['persistent_variable'];
+    ?>
